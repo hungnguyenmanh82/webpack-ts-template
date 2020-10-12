@@ -1,7 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const plugins = [
+  new CleanWebpackPlugin(),
   new HtmlWebpackPlugin({
     title: 'App-Name',
     template: './src/index.html',
@@ -20,6 +22,7 @@ var config = {
   module: {
     rules: [
       {
+        /* chỗ này đã bao gồm *.tsx, *.ts */
         test: /\.tsx?$/,
         exclude: /node_modules/,
         use: 'ts-loader',
