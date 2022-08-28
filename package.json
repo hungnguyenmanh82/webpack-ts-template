@@ -6,12 +6,12 @@
   "scripts": {
     "build": "npm run build:prod",
     "build:w": "webpack --watch --progress",
-    "build:dev": "webpack --mode development --config ./webpack.config.js --progress --color --display-error-details",
-    "build:prod": "webpack --mode production --config ./webpack.config.js  --progress  --color --display-error-details --bail",
+    "build:dev": "webpack --mode development --config ./webpack.config.js --progress --color --stats-error-details",
+    "build:prod": "webpack --mode production --config ./webpack.config.js  --progress  --color --stats-error-details",
     "clean": "npm cache clear && rimraf -- dist",
     "server": "npm run server:dev",
-    "server:dev": "webpack-dev-server --mode development --config ./webpack.config.js --hot --inline --progress --watch --open",
-    "server:prod": "webpack-dev-server  --mode production --config ./webpack.config.js --port 3000 --host 0.0.0.0 --hot --inline --progress  --watch --open --content-base dist/",
+    "server:dev": "webpack server --mode development --config ./webpack.config.js --hot  --progress  --open",
+    "server:prod": "webpack server  --mode production --config ./webpack.config.js --port 3000 --host 0.0.0.0 --hot  --progress ",
     "start": "npm run server:dev",
     "test": "karma start"
   },
@@ -24,15 +24,17 @@
   },
   "devDependencies": {
     "@types/jasmine": "^3.5.14",
+    "@webpack-cli/serve": "^1.7.0",
     "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^9.0.1",
     "css-loader": "^4.3.0",
     "ejs-loader": "^0.5.0",
     "eslint": "^7.10.0",
     "html-loader": "^1.3.1",
-    "html-webpack-plugin": "^4.5.0",
+    "html-webpack-plugin": "^5.1.0",
     "jasmine": "^3.6.1",
     "jasmine-core": "^3.6.0",
-    "karma": "^5.2.3",
+    "karma": "^6.4.0",
     "karma-chrome-launcher": "^3.1.0",
     "karma-coverage-istanbul-reporter": "^3.0.3",
     "karma-jasmine": "^4.0.1",
@@ -46,9 +48,9 @@
     "style-loader": "^1.2.1",
     "ts-loader": "^8.0.4",
     "typescript": "^4.0.3",
-    "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.3.0",
+    "webpack-dev-server": "^4.10.0"
   },
   "directories": {
     "test": "tests"

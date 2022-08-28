@@ -14,18 +14,6 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
  * -----
  * chunks: là tên Entry khai báo các *.js cần webpack bundle
  */
-let htmlPageNames = ['test1', 'test2'];
-let multipleHtmlPlugins = htmlPageNames.map((name) => {
-  let templateFile = './src/' + name + '/' + name + '.html';
-  let filename = name + '/' + name + '.html';
-  let jsName = './src/' + name + '/' + name + '.html';
-  return new HtmlWebpackPlugin({
-    template: templateFile, // relative path to the HTML files
-    filename: filename, // output HTML files
-    chunks: [name], // respective JS files
-    inject: 'body',
-  });
-});
 
 const plugins = [
   new CleanWebpackPlugin(),
@@ -35,7 +23,19 @@ const plugins = [
     chunks: ['index'],
     inject: 'body',
   }),
-].concat(multipleHtmlPlugins); // concat là add thêm phần tử vào Array
+  new HtmlWebpackPlugin({
+    filename: 'test1.html',
+    template: './src/test1/test1.html',
+    chunks: ['test1'],
+    inject: 'body',
+  }),
+  new HtmlWebpackPlugin({
+    filename: 'test2/test2.html',
+    template: './src/test2/test2.html',
+    chunks: ['test2'],
+    inject: 'body',
+  }),
+];
 
 /**
  * index, test1, test2: =[name] ở mục output khi bundle bởi webpack
@@ -43,21 +43,8 @@ const plugins = [
 var config = {
   entry: {
     index: './src/index.ts',
-    test1: {
-      import: './src/test1/test1.ts',
-      library: {
-        /**
-         * sẽ dùng 'MyLibrary.functionName()' để gọi tới functin của thư viện
-         * ở file *.ts cần phải export các function và Variable thì mới đc
-         * ---
-         * Nếu ko khai báo cách này thì webpack khi build *.js sẽ ra empty file
-         */
-        name: 'MyLibrary',
-        type: 'umd',
-        umdNamedDefine: true,
-      },
-    },
-    test2: './src/test2/test2.ts', // file này sẽ bị empty, phải khai báo giống 'test1' thì mới đc
+    test1: './src/test1/test1.ts',
+    test2: './src/test1/test2.ts',
   },
   /**
    * Vấn đề của Http LastModified và Etag: là nó thiết lập cho 1 nhóm folder, file.
@@ -72,12 +59,10 @@ var config = {
    * ------
    * Mô hình Single Page App thì file *.bundle.js  thường chèn vào body của *.html và cũng chỉ có 1 file *.js cần chèn vào thôi
    * file *.js này chứa cả javaScript và CSS.
-   * -----
-   * https://webpack.js.org/configuration/output/
    */
   output: {
     path: path.resolve('./dist'),
-    filename: '[name].[chunkhash:8].js',
+    filename: '[name].[chunkhash].js',
   },
   module: {
     rules: [

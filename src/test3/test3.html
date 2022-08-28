@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+
+  <body>
+    <h1>Test3 page</h1>
+    <div>
+      <button onclick="sayHello()">say Hello</button>
+      <button onclick="sayHello2()">function from *.js</button>
+    </div>
+    <script>
+      <!-- nếu khai báo function ở đây thì sẽ gọi trực tiếp đc -->
+      function sayHello() {
+        alert(' Tuyet vơi ');
+      }
+    </script>
+
+    <!-- insert vào *.html có gọi đc function này, ko cần phải export -->
+    <script src="test3.js"></script>
+  </body>
+</html>
