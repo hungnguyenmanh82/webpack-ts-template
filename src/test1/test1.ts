@@ -7,6 +7,9 @@ export const title1 = 'dụng chính đương đầu, dụng kỳ thắng thủ'
 
 console.log('See this in your browser console: Typescript Webpack Starter Launched');
 
+/**
+ * nếu compile với webpack thì cần export thì ở bên ngoài mới gọi đc
+ */
 export let sayHi = () => {
   console.log('Hello');
   alert('dùng webpack Entry library + export ở *.js');
