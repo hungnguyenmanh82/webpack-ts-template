@@ -10,7 +10,7 @@
     "build:prod": "webpack --mode production --config ./webpack.config.js  --progress  --color --stats-error-details",
     "clean": "npm cache clear && rimraf -- dist",
     "server": "npm run server:dev",
-    "server:dev": "webpack server --mode development --config ./webpack.config.js --hot  --progress  --open",
+    "server:dev": "webpack server --mode development --config ./webpack.config.js --hot --port 3000 --progress  --open",
     "server:prod": "webpack server  --mode production --config ./webpack.config.js --port 3000 --host 0.0.0.0 --hot  --progress ",
     "start": "npm run server:dev",
     "test": "karma start"
@@ -24,8 +24,10 @@
   },
   "devDependencies": {
     "@types/jasmine": "^3.5.14",
+    "@types/node": "^18.7.14",
     "@types/webpack": "^5.28.0",
     "@types/webpack-dev-server": "^4.7.2",
+    "@webpack-cli/generators": "^0.1.9",
     "@webpack-cli/serve": "^1.7.0",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^9.0.1",

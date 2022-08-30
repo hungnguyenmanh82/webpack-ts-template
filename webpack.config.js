@@ -23,7 +23,7 @@ let multipleHtmlPlugins = htmlPageNames.map((name) => {
     template: templateFile, // relative path to the HTML files
     filename: filename, // output HTML files
     chunks: [name], // respective JS files
-    inject: 'body',
+    inject: 'body'
   });
 });
 
@@ -33,8 +33,8 @@ const plugins = [
     filename: 'index.html',
     template: './src/index.html',
     chunks: ['index'],
-    inject: 'body',
-  }),
+    inject: 'body'
+  })
 ].concat(multipleHtmlPlugins); // concat là add thêm phần tử vào Array
 
 /**
@@ -54,10 +54,10 @@ var config = {
          */
         name: 'MyLibrary',
         type: 'umd',
-        umdNamedDefine: true,
-      },
+        umdNamedDefine: true
+      }
     },
-    test2: './src/test2/test2.ts', // file này sẽ bị empty, phải khai báo giống 'test1' thì mới đc
+    test2: './src/test2/test2.ts' // file này sẽ bị empty, phải khai báo giống 'test1' thì mới đc
   },
   /**
    * Vấn đề của Http LastModified và Etag: là nó thiết lập cho 1 nhóm folder, file.
@@ -77,32 +77,33 @@ var config = {
    */
   output: {
     path: path.resolve('./dist'),
-    filename: '[name].[chunkhash:8].js',
+    filename: '[name].[chunkhash:8].js'
   },
+
   module: {
     rules: [
       {
         /* chỗ này đã bao gồm *.tsx, *.ts */
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        use: 'ts-loader',
+        use: 'ts-loader'
       },
       { test: /\.html$/, loader: 'html-loader' },
       {
         test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: ['style-loader', 'css-loader', 'sass-loader']
       },
       /** FileLoader sẽ ko add file vào webpack, mà lúc build nó sẽ đổi tên và add vào folder “/dist”. */
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: ['file-loader'],
-      },
-    ],
+        use: ['file-loader']
+      }
+    ]
   },
   resolve: {
-    extensions: ['.ts', '.js'],
+    extensions: ['.ts', '.js']
   },
-  plugins: plugins,
+  plugins: plugins
 };
 
 /**
